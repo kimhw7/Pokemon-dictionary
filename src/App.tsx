@@ -1,9 +1,23 @@
 import React from "react";
-import request from "./api/instance";
+import { useState, useEffect } from "react";
 
+import { getPokeData } from "./api/pokeMain";
 const App = () => {
-  request.get("pokemon?limit=20&offset=0").then((res) => console.log(res));
-  return <div className="App"></div>;
+  const [data, setData] = useState<any>();
+
+  useEffect(() => {
+    const get = async () => {
+      const pokeData = await getPokeData(20, 0);
+      setData(pokeData);
+    };
+
+    get().catch((err) => console.log(err));
+  }, []);
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+  return <div></div>;
 };
 
 export default App;
