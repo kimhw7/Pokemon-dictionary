@@ -17,7 +17,7 @@ const App = () => {
     console.log(data);
   }, [data]);
 
-  return <div></div>;
+  return <div>hi</div>;
 };
 
 export default App;
