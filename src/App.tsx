@@ -1,9 +1,10 @@
-import React from "react";
-import request from "./api/instance";
-
+import Pokemon from "./page/Pokemon";
 const App = () => {
-  request.get("pokemon?limit=20&offset=0").then((res) => console.log(res));
-  return <div className="App"></div>;
+  return (
+    <div>
+      <Pokemon />
+    </div>
+  );
 };
 
 export default App;
