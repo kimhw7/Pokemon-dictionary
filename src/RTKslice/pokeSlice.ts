@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { IPoketmon } from "../type/pokemon";
+import type { IPokemon } from "../type/pokemon";
 
 interface IinitialState {
-  poketmons: IPoketmon[];
+  poketmons: IPokemon[];
 }
 
 const initialState: IinitialState = {
