@@ -1,22 +1,28 @@
 import { useEffect, useState } from "react";
 
 import PokemonCard from "../components/PokemonCard";
-import { getPokeData } from "../api/pokeMain";
+import { getPokeList } from "../api/pokeMain";
 import type { IPokemon } from "../type/pokemon";
 
 const Pokemon = () => {
-  const [offset, setOffset] = useState<number>(20);
+  const [offset, setOffset] = useState<number>(0);
   const [pokeDataList, setPokeDataList] = useState<IPokemon[]>([]);
 
   useEffect(() => {
     const fetchPokeData = async () => {
-      const pokeData = await getPokeData(20, offset);
+      const pokeData = await getPokeList(20, offset);
       setPokeDataList([...pokeDataList, ...pokeData.data.results]);
     };
     fetchPokeData();
   }, [offset]);
 
-  return <div></div>;
+  return (
+    <div>
+      {pokeDataList.map((el, idx) => (
+        <PokemonCard key={idx} pokeData={el} />
+      ))}
+    </div>
+  );
 };
 
 export default Pokemon;
