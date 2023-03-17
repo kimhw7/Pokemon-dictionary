@@ -6,7 +6,8 @@ const PokemonCard = ({ pokeData }: { pokeData: IPokemon }) => {
   useEffect(() => {
     const fetchPokeData = async () => {
       const data = await getPokeData(pokeData.url);
-      console.log(data);
+      console.log(data.data);
+      console.log(pokeData.name);
       setCardData(data.data);
     };
     fetchPokeData();
@@ -14,6 +15,7 @@ const PokemonCard = ({ pokeData }: { pokeData: IPokemon }) => {
   return (
     <div>
       <img src={cardData?.sprites.front_default} />
+      {/* <img src={cardData?.sprites.back_default} /> */}
     </div>
   );
 };
