@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 import PokemonCard from "../components/PokemonCard";
 import { getPokeList } from "../api/pokeMain";
@@ -17,12 +18,17 @@ const Pokemon = () => {
   }, [offset]);
 
   return (
-    <div>
+    <PokeCardList>
       {pokeDataList.map((el, idx) => (
         <PokemonCard key={idx} pokeData={el} />
       ))}
-    </div>
+    </PokeCardList>
   );
 };
+
+const PokeCardList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 export default Pokemon;
