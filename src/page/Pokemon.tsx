@@ -18,11 +18,16 @@ const Pokemon = () => {
   }, [offset]);
 
   return (
-    <PokeCardList>
-      {pokeDataList.map((el, idx) => (
-        <PokemonCard key={idx} pokeData={el} />
-      ))}
-    </PokeCardList>
+    <>
+      <PokeCardList>
+        {pokeDataList.map((el, idx) => (
+          <PokemonCard key={idx} pokeData={el} />
+        ))}
+      </PokeCardList>
+      <div>
+        <button onClick={() => setOffset(offset + 20)}>click</button>
+      </div>
+    </>
   );
 };
 
