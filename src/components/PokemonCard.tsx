@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { getPokeData } from "../api/pokeMain";
 import PokeType from "./PokeType";
 import type { IPokemon } from "../type/pokemon";
@@ -7,7 +8,7 @@ import type { CardData } from "../type/pokemon";
 
 const PokemonCard = ({ pokeData }: { pokeData: IPokemon }) => {
   const [cardData, setCardData] = useState<CardData>();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchPokeData = async () => {
       const data = await getPokeData(pokeData.url);
@@ -18,8 +19,7 @@ const PokemonCard = ({ pokeData }: { pokeData: IPokemon }) => {
   }, []);
 
   return (
-    <CardWrapper>
-      img
+    <CardWrapper onClick={() => navigate(`/${cardData?.name}`)}>
       <img className="pokeImg" src={cardData?.sprites.front_default} />
       {/* <img src={cardData?.sprites.back_default} /> */}
       <InfoWrapper>
@@ -37,6 +37,9 @@ const PokemonCard = ({ pokeData }: { pokeData: IPokemon }) => {
 
 const CardWrapper = styled.li`
   width: 25%;
+  :hover {
+    cursor: pointer;
+  }
   .pokeImg {
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 10px;
