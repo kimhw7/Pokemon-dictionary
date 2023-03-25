@@ -12,7 +12,6 @@ const PokemonCard = ({ pokeData }: { pokeData: IPokemon }) => {
   useEffect(() => {
     const fetchPokeData = async () => {
       const data = await getPokeData(pokeData.url);
-      console.log(data.data);
       setCardData(data.data);
     };
     fetchPokeData();
