@@ -8,14 +8,14 @@ const PokemonDetail = () => {
 
   useEffect(() => {
     const fetchPokeData = async () => {
-      const data = await getPokeData(API_URL + name);
+      const data = await getPokeData(
+        "https://pokeapi.co/api/v2/pokemon-species/1/"
+      );
       console.log(data.data);
     };
     fetchPokeData();
   }, []);
   return <div></div>;
 };
-
-const API_URL = "https://pokeapi.co/api/v2/pokemon/";
 
 export default PokemonDetail;

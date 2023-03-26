@@ -5,14 +5,18 @@ import { getPokeData } from "../api/pokeMain";
 import PokeType from "./PokeType";
 import type { IPokemon } from "../type/pokemon";
 import type { CardData } from "../type/pokemon";
+import type { SpeciesData } from "../type/pokemon";
 
 const PokemonCard = ({ pokeData }: { pokeData: IPokemon }) => {
   const [cardData, setCardData] = useState<CardData>();
+  const [speciesData, setSprciesData] = useState<SpeciesData>();
   const navigate = useNavigate();
   useEffect(() => {
     const fetchPokeData = async () => {
-      const data = await getPokeData(pokeData.url);
-      setCardData(data.data);
+      const defaultData = await getPokeData(pokeData.url);
+      setCardData(defaultData.data);
+      const speciesData = await getPokeData(defaultData.data.species.url);
+      setSprciesData(speciesData.data);
     };
     fetchPokeData();
   }, []);
@@ -23,7 +27,7 @@ const PokemonCard = ({ pokeData }: { pokeData: IPokemon }) => {
       {/* <img src={cardData?.sprites.back_default} /> */}
       <InfoWrapper>
         <span>{`No.${cardData?.id}`}</span>
-        <span>{pokeData.name}</span>
+        <span>{speciesData?.names[2].name}</span>
       </InfoWrapper>
       <TypeWrapper>
         {cardData?.types.map((el) => (
@@ -35,7 +39,7 @@ const PokemonCard = ({ pokeData }: { pokeData: IPokemon }) => {
 };
 
 const CardWrapper = styled.li`
-  width: 25%;
+  width: 20%;
   :hover {
     cursor: pointer;
   }
