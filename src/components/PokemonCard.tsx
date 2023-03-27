@@ -22,6 +22,7 @@ const PokemonCard = ({ pokeData }: { pokeData: IPokemon }) => {
   }, []);
 
   return (
+    // 페이지 이동
     <CardWrapper onClick={() => navigate(`/${cardData?.name}`)}>
       <img className="pokeImg" src={cardData?.sprites.front_default} />
       {/* <img src={cardData?.sprites.back_default} /> */}
