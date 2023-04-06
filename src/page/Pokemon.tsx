@@ -26,7 +26,7 @@ const Pokemon = () => {
       </PokeCardList>
       <div>
         <button onClick={() => setOffset(offset + 20)}>
-          get poke`mon list
+          get poke`mon list button
         </button>
       </div>
     </>
